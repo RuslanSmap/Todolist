@@ -13,12 +13,23 @@ export type TaskProps = {
     isDone: boolean
 }
 
+function quote(fighter) {
+    if (fighter === "George Saint Pierre") {
+        console.log("I am not impressed by your performance.");
+    }
+    if (fighter === "Conor McGregor") {
+        console.log("I'd like to take this chance to apologize.. To absolutely NOBODY!")
+    }
+}
+
+quote("Conor McGregor")
+
 export const Todolist = ({truck, tasks}: TodolistProps) => {
 
     const mappedTasks = tasks.map((el, index) => {
         // debugger
         return (
-           <Task id={el.id} title={el.title} isDone={el.isDone} />
+            <Task id={el.id} title={el.title} isDone={el.isDone}/>
         )
     })
 
@@ -29,9 +40,13 @@ export const Todolist = ({truck, tasks}: TodolistProps) => {
                 <input/>
                 <button>+</button>
             </div>
-            <ul>
-                {mappedTasks}
-            </ul>
+            {tasks.length === 0 ? (
+                <p>Тасок нет</p>
+            ) : (
+                <ul>
+                    {mappedTasks}
+                </ul>
+            )}
             <div>
                 <Button title={'All'}/>
                 <Button title={'Active'}/>

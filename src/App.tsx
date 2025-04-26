@@ -14,9 +14,9 @@ function App() {
     ]
 
     const tasks2 = [
-        {id: 1, title: 'Hello world', isDone: true},
-        {id: 2, title: 'I am Happy', isDone: true},
-        {id: 3, title: 'Yo', isDone: false},
+        // {id: 1, title: 'Hello world', isDone: true},
+        // {id: 2, title: 'I am Happy', isDone: true},
+        // {id: 3, title: 'Yo', isDone: false},
     ]
 
 
