@@ -1,41 +1,17 @@
-import {Task} from "./Task.tsx";
-import {Button} from "./Button.tsx";
+import {Button} from './Button.tsx';
+import {TaskType} from '../App.tsx';
 
 export type TodolistProps = {
-    truck: string,
-    // task: Array<TaskType>
-    tasks: TaskProps[]
-}
-
-export type TaskProps = {
-    id: number,
     title: string,
-    isDone: boolean
+    tasks: TaskType[]
 }
 
-function quote(fighter) {
-    if (fighter === "George Saint Pierre") {
-        console.log("I am not impressed by your performance.");
-    }
-    if (fighter === "Conor McGregor") {
-        console.log("I'd like to take this chance to apologize.. To absolutely NOBODY!")
-    }
-}
 
-quote("Conor McGregor")
-
-export const Todolist = ({truck, tasks}: TodolistProps) => {
-
-    const mappedTasks = tasks.map((el, index) => {
-        // debugger
-        return (
-            <Task id={el.id} title={el.title} isDone={el.isDone}/>
-        )
-    })
+export const Todolist = ({title, tasks}: TodolistProps) => {
 
     return (
         <div>
-            <h3>{truck}</h3>
+            <h3>{title}</h3>
             <div>
                 <input/>
                 <button>+</button>
@@ -44,7 +20,10 @@ export const Todolist = ({truck, tasks}: TodolistProps) => {
                 <p>Тасок нет</p>
             ) : (
                 <ul>
-                    {mappedTasks}
+                    {tasks.map((task,) => {
+                        return <li key={task.id}><input type="checkbox" checked={task.isDone}/><span>{task.title}</span>
+                        </li>
+                    })}
                 </ul>
             )}
             <div>
