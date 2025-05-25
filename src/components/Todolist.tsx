@@ -1,13 +1,13 @@
-import {Button} from './Button.tsx';
-import {TaskType} from '../App.tsx';
+import {FilterValueType, TaskType} from '../App.tsx';
 
 export type TodolistProps = {
     title: string,
-    tasks: TaskType[]
+    durshlagVal: TaskType[],
+    removeTasks: (taskId: number) => void,
+    changeFilter: (val: FilterValueType) => void
 }
 
-
-export const Todolist = ({title, tasks}: TodolistProps) => {
+export const Todolist = ({title, durshlagVal, removeTasks, changeFilter}: TodolistProps) => {
 
     return (
         <div>
@@ -16,20 +16,23 @@ export const Todolist = ({title, tasks}: TodolistProps) => {
                 <input/>
                 <button>+</button>
             </div>
-            {tasks.length === 0 ? (
+            {durshlagVal.length === 0 ? (
                 <p>Тасок нет</p>
             ) : (
                 <ul>
-                    {tasks.map((task,) => {
-                        return <li key={task.id}><input type="checkbox" checked={task.isDone}/><span>{task.title}</span>
+                    {durshlagVal.map((task,) => {
+                        return <li key={task.id}>
+                            <button onClick={() => removeTasks(task.id)}>X</button>
+                            <input type="checkbox" checked={task.isDone}/>
+                            <span>{task.title}</span>
                         </li>
                     })}
                 </ul>
             )}
             <div>
-                <Button title={'All'}/>
-                <Button title={'Active'}/>
-                <Button title={'Completed'}/>
+                <button onClick={() => changeFilter('All')}>All</button>
+                <button onClick={() => changeFilter('Active')}>Active</button>
+                <button onClick={() => changeFilter('Completed')}>Completed</button>
             </div>
         </div>
     )
